@@ -1437,6 +1437,8 @@ class Lens(LensedSystemBase):
             "EPL_SERSIC",
             "NFW_HERNQUIST",
             "NFW_CLUSTER",
+            "NFW_SERSIC",
+            "SIE_SERSIC",
         ]:
 
             lens_mass_model_list, kwargs_lens = self.deflector.mass_model_lenstronomy(

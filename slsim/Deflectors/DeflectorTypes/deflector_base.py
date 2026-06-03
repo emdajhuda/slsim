@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 import numpy as np
 from slsim.Util import param_util
 
-_SUPPORTED_DEFLECTORS = ["EPL", "NFW_HERNQUIST"]
+_SUPPORTED_DEFLECTORS = ["EPL", "NFW_HERNQUIST", "NFW_SERSIC", "SIE_SERSIC"]
 
 
 class DeflectorBase(ABC):

@@ -2,6 +2,8 @@ from slsim.Deflectors.DeflectorTypes.epl_sersic import EPLSersic
 from slsim.Deflectors.DeflectorTypes.epl import EPL
 from slsim.Deflectors.DeflectorTypes.nfw_hernquist import NFWHernquist
 from slsim.Deflectors.DeflectorTypes.nfw_cluster import NFWCluster
+from slsim.Deflectors.DeflectorTypes.nfw_sersic import NFWSersic
+from slsim.Deflectors.DeflectorTypes.sie_sersic import SIESersic
 from lenstronomy.LightModel.light_model import LightModel
 from lenstronomy.Util import data_util
 from slsim.Util import param_util
@@ -11,7 +13,7 @@ from lenstronomy.Cosmo.lens_cosmo import LensCosmo
 from lenstronomy.Analysis.lens_profile import LensProfileAnalysis
 from lenstronomy.LensModel.lens_model import LensModel
 
-_SUPPORTED_DEFLECTORS = ["EPL", "EPL_SERSIC", "NFW_HERNQUIST", "NFW_CLUSTER"]
+_SUPPORTED_DEFLECTORS = ["EPL", "EPL_SERSIC", "NFW_HERNQUIST", "NFW_CLUSTER", "NFW_SERSIC", "SIE_SERSIC"]
 JAX_PROFILES = [
     "EPL",
     "NFW",
@@ -28,7 +30,7 @@ class Deflector(object):
     def __init__(self, deflector_type, **kwargs):
         """
 
-        :param deflector_type: type of deflector, i.e. "EPL", "NFW_HERNQUIST", "NFW_CLUSTER"
+        :param deflector_type: type of deflector, i.e. "EPL", "NFW_HERNQUIST", "NFW_CLUSTER", "NFW_SERSIC", "SIE_SERSIC"
         :type deflector_type: str
         :param deflector_dict: parameters of the deflector
         :type deflector_dict: dict
@@ -41,6 +43,10 @@ class Deflector(object):
             self._deflector = EPLSersic(**kwargs)
         elif deflector_type in ["NFW_HERNQUIST"]:
             self._deflector = NFWHernquist(**kwargs)
+        elif deflector_type in ["SIE_SERSIC"]:
+            self._deflector = SIESersic(**kwargs)
+        elif deflector_type in ["NFW_SERSIC"]:
+            self._deflector = NFWSersic(**kwargs)
         elif deflector_type in ["NFW_CLUSTER"]:
             self._deflector = NFWCluster(**kwargs)
             self._name = "CLUSTER"
